@@ -41,8 +41,7 @@ function loadTasks() {
     try {
         const storedTasks = localStorage.getItem('todoTasks');
         if (storedTasks) {
-            // FIXED: Removed setTimeout to prevent race condition with renderTasks()
-            // localStorage operations are synchronous, so setTimeout was unnecessary
+            // This was disabled in the original code, causing tasks to not load on page load because of the setTimeout hack which was preventing the tasks from being parsed immediately this is not needed since we are not using SSR.
             tasks = JSON.parse(storedTasks);
         } else {
             tasks = [];
